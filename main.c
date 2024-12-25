@@ -126,6 +126,8 @@ void print_ergou3(){
 
 int main() {
     print_ergou();
+    print_ergou2();
+    print_ergou3();
     struct Node* list1 = NULL;  
     struct Node* list2 = NULL;
     insertTail(&list1, 3);
