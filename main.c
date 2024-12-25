@@ -111,7 +111,9 @@ struct Node* unionSet(struct Node* list1, struct Node* list2){
 
 }
 
-
+void print_ergou(){
+    printf("隔壁老王\n");
+}
 
 
 int main() {
