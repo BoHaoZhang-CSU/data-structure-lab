@@ -113,7 +113,7 @@ struct Node* unionSet(struct Node* list1, struct Node* list2){
 
 
 void print_ergou(){
-    printf("二狗");
+    printf("二狗\n");
 }
     
 
