@@ -112,9 +112,13 @@ struct Node* unionSet(struct Node* list1, struct Node* list2){
 }
 
 
-
+void print_ergou(){
+    printf("二狗");
+}
+    
 
 int main() {
+    print_ergou();
     struct Node* list1 = NULL;  
     struct Node* list2 = NULL;
     insertTail(&list1, 3);
