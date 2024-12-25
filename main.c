@@ -5,131 +5,152 @@ struct Node
     int data;
     struct Node *next;
 };
-struct Node* creatNode(int value){
-    struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
+struct Node *creatNode(int value)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = value;
     newNode->next = NULL;
     return newNode;
-
 }
 
-void insertTail(struct Node** head, int value){
-    struct Node* newNode = creatNode(value);
-    if(*head == NULL){
+void insertTail(struct Node **head, int value)
+{
+    struct Node *newNode = creatNode(value);
+    if (*head == NULL)
+    {
         *head = newNode;
-    }else{
-        struct Node* temp = *head;
-        while(temp->next != NULL){
+    }
+    else
+    {
+        struct Node *temp = *head;
+        while (temp->next != NULL)
+        {
             temp = temp->next;
         }
         temp->next = newNode;
     }
-    
 }
 
-void insertBefore(struct Node** head, int target, int value){
-    struct Node* newNode = creatNode(value);
-    //空链表
-    if(*head == NULL) return;
-    //头结点
-    if((*head)->data == target){
-        newNode->next = *head;  
+void insertBefore(struct Node **head, int target, int value)
+{
+    struct Node *newNode = creatNode(value);
+    // 空链表
+    if (*head == NULL)
+        return;
+    // 头结点
+    if ((*head)->data == target)
+    {
+        newNode->next = *head;
         *head = newNode;
         return;
-    }else{
-        struct Node* temp = *head;
-        while(temp->next != NULL && temp->next->data != target){
+    }
+    else
+    {
+        struct Node *temp = *head;
+        while (temp->next != NULL && temp->next->data != target)
+        {
             temp = temp->next;
         }
-        if(temp->next == NULL) return;
+        if (temp->next == NULL)
+            return;
         newNode->next = temp->next;
         temp->next = newNode;
-
     }
-
-    
-
 }
 
-void deleteValue(struct Node** head, int value){
-    if(*head == NULL) return;
-    if((*head)->data == value){
-        struct Node* temp = *head;
+void deleteValue(struct Node **head, int value)
+{
+    if (*head == NULL)
+        return;
+    if ((*head)->data == value)
+    {
+        struct Node *temp = *head;
         *head = (*head)->next;
         free(temp);
         return;
     }
-    struct Node* temp = *head;
-    while(temp->next && temp->next->data != value){
+    struct Node *temp = *head;
+    while (temp->next && temp->next->data != value)
+    {
         temp = temp->next;
-    } 
-    if(temp->next == NULL) return;
-    struct Node* toDelete = temp->next;
+    }
+    if (temp->next == NULL)
+        return;
+    struct Node *toDelete = temp->next;
     temp->next = toDelete->next;
     free(toDelete);
-
 }
-//打印链表
-void printList(struct Node* head){
-    if(head == NULL){
+// 打印链表
+void printList(struct Node *head)
+{
+    if (head == NULL)
+    {
         printf("链表为空！");
         return;
     }
-    struct Node* temp = head;
-    while(temp != NULL){
+    struct Node *temp = head;
+    while (temp != NULL)
+    {
         printf("%d,", temp->data);
         temp = temp->next;
     }
-   printf("\n");
+    printf("\n");
 }
-//计算两个链表集合的并集
-struct Node* unionSet(struct Node* list1, struct Node* list2){
-    struct Node* result = NULL;
-    struct Node* temp = list1;
-    while(temp){
+// 计算两个链表集合的并集
+struct Node *unionSet(struct Node *list1, struct Node *list2)
+{
+    struct Node *result = NULL;
+    struct Node *temp = list1;
+    while (temp)
+    {
         insertTail(&result, temp->data);
         temp = temp->next;
     }
     temp = list2;
-    while(temp){
-        struct Node* check = result;
+    while (temp)
+    {
+        struct Node *check = result;
         int found = 0;
-        while(check){
-            if(check->data == temp->data){
+        while (check)
+        {
+            if (check->data == temp->data)
+            {
                 found = 1;
                 break;
             }
             check = check->next;
-
         }
-        if(!found){
-            insertTail(&result,temp->data);
+        if (!found)
+        {
+            insertTail(&result, temp->data);
         }
         temp = temp->next;
     }
     return result;
-
 }
 
-void print_ergou(){
+void print_ergou()
+{
     printf("隔壁老王\n");
 }
 
-void print_ergou2(){
+void print_ergou2()
+{
     printf("隔壁老王2\n");
 }
 
-void print_ergou3(){
+void print_ergou3()
+{
     printf("二狗\n");
 }
-    
 
-int main() {
+int main()
+{
     print_ergou();
     print_ergou2();
     print_ergou3();
-    struct Node* list1 = NULL;  
-    struct Node* list2 = NULL;
+    struct Node *list1 = NULL;
+    struct Node *list2 = NULL;
     insertTail(&list1, 3);
     insertTail(&list1, 9);
     insertTail(&list1, 5);
@@ -156,7 +177,7 @@ int main() {
     printf("list2:\n");
     printList(list2);
     printf("list1和list2的并集:\n");
-    struct Node* result = unionSet(list1, list2);
+    struct Node *result = unionSet(list1, list2);
     printList(result);
 
     return 0;
